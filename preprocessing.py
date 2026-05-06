@@ -14,7 +14,7 @@ def resize(image: np.ndarray,  dims: Tuple) -> np.ndarray:
     dims : Tuple
         Tupla amb les dimensions objectiu.
     """
-    return cv2.resize(image, dims)
+    return cv2.resize(image, (dims,dims))
     
 def to_grayscale(image) -> np.ndarray:
     """
@@ -84,7 +84,7 @@ def random_rotating(image : np.ndarray, max_angle: int = 180) -> np.ndarray:
     rotated_image = cv2.warpAffine(image, M, (w, h))
     return rotated_image
 
-def data_augmentation(image: np.ndarray) -> np.darray:
+def data_augmentation(image: np.ndarray) -> np.ndarray:
     """
     Aplica les 3 modificacions.
 
