@@ -14,7 +14,7 @@ def resize(image: np.ndarray,  dims: Tuple) -> np.ndarray:
     dims : Tuple
         Tupla amb les dimensions objectiu.
     """
-    return cv2.resize(image, (dims,dims))
+    return cv2.resize(image, dims)
     
 def to_grayscale(image) -> np.ndarray:
     """
