@@ -23,8 +23,8 @@ def test_detectar_zero():
     # VALORS A PROVAR I AJUSTAR (Format HSV)
     # H (Color): 0-179 | S (Saturació): 0-255 | V (Brillantor): 0-255
     # =======================================================
-    verd_baix = np.array([2, 3])  # Verd fosc/desaturat
-    verd_alt = np.array([4]) # Verd clar/brillant
+    verd_baix = np.array([40, 50, 50])   # Límit inferior [H, S, V]
+    verd_alt = np.array([80, 255, 255])
     
     # Provem només amb 10 imatges per anar ràpid
     for ruta in rutes_imatges[:10]: 

@@ -15,8 +15,8 @@ def trobar_casella_zero(imatge_color, mascara_ruleta):
     
     # Definim el rang del color verd en HSV 
     # (Aquests valors poden requerir petits ajustos empírics amb les teves fotos de 'train')
-    verd_baix = np.array([6, 7])
-    verd_alt = np.array([8])
+    verd_baix = np.array([40, 50, 50])
+    verd_alt = np.array([80, 255, 255])
     
     # Creem una màscara binària on només el verd sigui blanc
     mascara_verda = cv2.inRange(hsv, verd_baix, verd_alt)
@@ -24,8 +24,6 @@ def trobar_casella_zero(imatge_color, mascara_ruleta):
     # Apliquem la màscara de l'anell perquè no busqui res verd fora de la ruleta
     mascara_verda = cv2.bitwise_and(mascara_verda, mascara_verda, mask=mascara_ruleta)
     
-    cv2.imshow("Mascara Verda", mascara_verda)
-    cv2.waitKey(0)
     # 2. Etiquetem les regions connectades i n'extraiem les propietats
     labels = measure.label(mascara_verda)
     props = measure.regionprops(labels)
@@ -60,8 +58,8 @@ def extreure_dades_ml_relatives(ruta, mascara_ruleta, dimensions):
     
     if cercles is not None and centroide_zero is not None:
         cercles_arrodonits = np.uint16(np.around(cercles))
-        x_bola = cercles_arrodonits
-        y_bola = cercles_arrodonits[9]
+        x_bola = int(cercles_arrodonits[0][0][0])
+        y_bola = int(cercles_arrodonits[0][0][1])
         
         x_zero, y_zero = centroide_zero
         centre_x, centre_y = 400, 400
