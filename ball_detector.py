@@ -221,7 +221,7 @@ def extreure_patch_bola(imatge_color, centre_bola, mida_patch=50):
 # 4. EXECUCIÓ DEL PROGRAMA
 # ==========================================
 
-def main():
+def prova():
     """
     Punt d'entrada del script. Gestiona la càrrega del dataset i el bucle principal.
     """
@@ -241,5 +241,3 @@ def main():
 
     cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-    main()

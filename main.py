@@ -1,3 +1,4 @@
+
 import numpy as np
 from pathlib import Path
 from sklearn.neighbors import KNeighborsClassifier
@@ -24,17 +25,7 @@ def processar_dataset(ruta_carpeta, mascara, dimensions):
             
     return np.array(X_data), np.array(Y_labels)
 
-def main():
-    # 1. Configuració inicial i generació de la màscara
-    DIMENSIONS = (800, 800)
-    CENTRE = (400, 400)
-    mascara_ruleta = ball_detector.crear_mascara_anell(DIMENSIONS, CENTRE, radi_ext=300, radi_int=220)
-    
-    # Rutes de les dades (assegura't que les rutes existeixen)
-    ruta_train = Path(r'dataset_final/train')
-    ruta_test = Path(r'dataset_final/test')
-    
-    # 2. Extracció de dades (Entrenament)
+def pipeline_A(ruta_train,ruta_test,mascara_ruleta,DIMENSIONS):
     print("Processant imatges d'entrenament...")
     X_train, Y_train = processar_dataset(ruta_train, mascara_ruleta, DIMENSIONS)
     print(f"S'han extret dades de {len(X_train)} imatges de train.")
@@ -57,5 +48,20 @@ def main():
     print(f"\n--- RESULTATS ---")
     print(f"Precisió del model (Accuracy): {precisio * 100:.2f}%")
 
+def main():
+    DIMENSIONS = (800, 800)
+    CENTRE = (400, 400)
+    mascara_ruleta = ball_detector.crear_mascara_anell(DIMENSIONS, CENTRE, radi_ext=300, radi_int=220)
+    
+    # Rutes de les dades (assegura't que les rutes existeixen)
+    ruta_train = Path(r'dataset_final/train')
+    ruta_test = Path(r'dataset_final/test')
+    
+    pipeline_A(ruta_train,ruta_test,mascara_ruleta,DIMENSIONS)
+
+'''
 if __name__ == "__main__":
     main()
+
+'''
+
