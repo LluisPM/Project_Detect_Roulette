@@ -187,26 +187,33 @@ def calcular_angle_bola(centre_ruleta, centre_bola):
         
     return angle_deg
 
-
-# no se que fer amb aquesta funcio, si treurela o no 
-'''
-def prova():
+def extreure_patch_bola(imatge_color, centre_bola, mida_patch=50):
     """
-    Punt d'entrada del script. Gestiona la càrrega del dataset i el bucle principal.
-    """
-    ruta_carpeta_train = Path(r'dataset_final/train')
-    rutes_imatges = [arxiu for arxiu in ruta_carpeta_train.iterdir() if arxiu.suffix == '.png'] 
-    
-    DIMENSIONS = (800, 800)
-    CENTRE = (400, 400)
-    mascara_ruleta = crear_mascara_anell(DIMENSIONS, CENTRE, radi_ext=300, radi_int=220)
-    
-    for contador, ruta in enumerate(rutes_imatges):
-        if contador >= 90:
-            break
-            
-        if not processar_imatge(ruta, mascara_ruleta, DIMENSIONS):
-            break
+    Extreu una sub-imatge (ROI) quadrada centrada en la posició de la bola.
 
-    cv2.destroyAllWindows()
-'''
+    Parameters
+    ----------
+    imatge_color : np.ndarray
+        La imatge original redimensionada a color (BGR).
+    centre_bola : tuple
+        Coordenades (x, y) on Hough ha detectat la bola.
+    mida_patch : int
+        Mida del costat del quadrat (per defecte 50x50 píxels).
+
+    Returns
+    -------
+    np.ndarray
+        El retall de la imatge llest per a ser classificat o guardat.
+    """
+    x, y = int(centre_bola[0]), int(centre_bola[1])
+    radi_patch = mida_patch // 2
+    
+    # Definim els límits del retall (cropping)
+    # Fem servir max/min per assegurar-nos que no sortim de la imatge
+    y_min, y_max = max(0, y - radi_patch), y + radi_patch
+    x_min, x_max = max(0, x - radi_patch), x + radi_patch
+    
+    patch = imatge_color[y_min:y_max, x_min:x_max]
+    
+    return patch
+
