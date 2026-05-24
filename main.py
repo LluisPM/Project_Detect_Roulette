@@ -57,7 +57,7 @@ def pipeline_A(ruta_train, ruta_test, mascara_ruleta, dimensions):
 def pipeline_B(ruta_test):
     """
     Executa el pipeline complet de l'OCR i n'avalua el rendiment.
-    Això és l'equivalent directe a 'pipeline_A'.
+   
     """
     print("\n--- PIPELINE B: OCR ---")
     print("Processant imatges i avaluant OCR...")

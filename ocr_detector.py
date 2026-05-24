@@ -3,9 +3,20 @@ import numpy as np
 import ball_detector
 from pathlib import Path
 import easyocr
+import warnings
 
+warnings.filterwarnings("ignore", category=UserWarning, module="torch.utils.data.dataloader")
 # Carreguem el lector un sol cop
-lector = easyocr.Reader(['en'], gpu=False)
+lector = None
+
+def obtenir_lector():
+    """Funció per carregar el model només la primera vegada que es necessita."""
+    global lector
+    if lector is None:
+        print("\nCarregant el model de text (EasyOCR) a la memòria...")
+        print("Això pot trigar entre 10 i 30 segons depenent de la CPU. Espera, si us plau...\n")
+        lector = easyocr.Reader(['en'], gpu=False)
+    return lector
 
 def alinear_ruleta(ruta_imatge, dimensions=(800, 800), centre=(400, 400)):
     imatge_original = cv2.imread(str(ruta_imatge))
@@ -67,7 +78,7 @@ def aplicar_ocr_easy(roi_numero):
     img_gran = cv2.resize(img_neta, (0, 0), fx=3, fy=3, interpolation=cv2.INTER_CUBIC)
     img_rgb = cv2.cvtColor(img_gran, cv2.COLOR_BGR2RGB)
     
-    resultats = lector.readtext(img_rgb, allowlist='0123456789')
+    resultats = obtenir_lector().readtext(img_rgb, allowlist='0123456789')
     
     text_final = ""
     for deteccio in resultats:
@@ -99,7 +110,7 @@ def processar_dataset_ocr(ruta_carpeta_test):
             numero_real = nom_sense_ext.split('_')[-1]
             
             img_rotada, bola_x, bola_y = alinear_ruleta(arxiu)
-            
+        
             if img_rotada is not None:
                 roi_numero = retallar(img_rotada, bola_x, bola_y)
                 
