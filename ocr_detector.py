@@ -2,7 +2,18 @@ import cv2
 import numpy as np 
 import ball_detector
 from pathlib import Path
-import easyocr
+import sys 
+
+try:
+    import easyocr
+except ImportError:
+    print("="*50)
+    print("Falta la llibreria 'easyocr' per llegir els números.")
+    print("Si us plau, instal·la-la obrint el terminal i escrivint:")
+    print(" -> pip install easyocr")
+    print("O instal·la-ho tot de cop amb: pip install -r requirements.txt\n")
+    sys.exit(1) # Atura el programa d'immediat sense llançar l'error vermell
+
 import warnings
 
 warnings.filterwarnings("ignore", category=UserWarning, module="torch.utils.data.dataloader")
