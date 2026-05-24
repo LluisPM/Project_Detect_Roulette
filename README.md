@@ -1,10 +1,10 @@
-# 🎯 Smart Roulette: Lector Automàtic de Tirades
+# Smart Roulette: Lector Automàtic de Tirades
 
 **Smart Roulette** és un sistema de visió per computador desenvolupat amb Python capaç d'identificar automàticament el número guanyador en una ruleta de casino a partir d'imatges estàtiques capturades d'un simulador digital. 
 
 Aquest projecte s'ha desenvolupat com a pràctica per a l'assignatura de Visió per Computador (PSIV) de l'Escola d'Enginyeria de la Universitat Autònoma de Barcelona (UAB).
 
-## 🚀 Característiques i Metodologia
+## Característiques i Metodologia
 
 El sistema processa les imatges mitjançant una primera etapa comuna de filtratge gaussià, emmascarament binari i l'aplicació de la **Transformada de Hough** per aïllar la posició de la bola blanca. A partir d'aquí, el projecte avalua i compara dues metodologies de classificació:
 
