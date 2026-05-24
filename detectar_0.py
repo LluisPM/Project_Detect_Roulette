@@ -1,10 +1,14 @@
 import preprocessing
 import cv2
-import numpy as np 
-from pathlib import Path
 import math
-import ball_detector
+import numpy as np 
+
 from skimage import measure
+from pathlib import Path
+
+import ball_detector
+from data_management import extract_label_from_filename
+
 
 def trobar_casella_zero(imatge_color, mascara_ruleta):
     """
@@ -41,7 +45,7 @@ def extreure_dades_ml_relatives(ruta, mascara_ruleta, dimensions):
     Processa la imatge, troba la bola i el zero, i retorna l'angle RELATIU.
     """
     nom_fitxer = ruta.stem 
-    etiqueta_y = int(nom_fitxer.split('_')[-1]) 
+    etiqueta_y = extract_label_from_filename(nom_fitxer)
     
     imatge_original = cv2.imread(str(ruta))
     if imatge_original is None:

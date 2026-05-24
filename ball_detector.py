@@ -217,10 +217,9 @@ def extreure_patch_bola(imatge_color, centre_bola, mida_patch=50):
     
     return patch
 
-# ==========================================
-# 4. EXECUCIÓ DEL PROGRAMA
-# ==========================================
 
+# no se que fer amb aquesta funcio, si treurela o no 
+'''
 def prova():
     """
     Punt d'entrada del script. Gestiona la càrrega del dataset i el bucle principal.
@@ -240,4 +239,4 @@ def prova():
             break
 
     cv2.destroyAllWindows()
-
+'''
