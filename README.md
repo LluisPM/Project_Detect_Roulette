@@ -20,7 +20,7 @@ El sistema processa les imatges mitjançant una primera etapa comuna de filtratg
 * `preprocessing.py` - Eines generals de tractament i augment de dades.
 * `requirements.txt` - Llistat de dependències necessàries per executar el projecte.
 
-## 🛠️ Instal·lació
+## Instal·lació
 
 1. Assegura't de tenir **Python 3.x** instal·lat al teu sistema.
 2. Clona aquest repositori o descarrega'n els fitxers.
